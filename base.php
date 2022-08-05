@@ -138,7 +138,7 @@ function math($math,$col,...$arg){
 }
 
 
-// $User = new DB('users');
+$Poster = new DB('poster');
 // $add = $User->math("count","acc");
 // dd($add);
 
