@@ -21,8 +21,8 @@ foreach($rows as $row){
     </div>
     <div style="width:24.6%" class="ct"><input type="text" name="name[]" value="<?=$row['name'];?>"></div>
     <div style="width:24.6%" class="ct">
-        <button type="button" class="btn">往上</button>
-        <button type="button" class="btn">往下</button>
+        <button type="button" class="btn" data-id="<?=$row['id']."-".$prev;?>">往上</button>
+        <button type="button" class="btn" data-id="<?=$row['id']."-".$next;?>">往下</button>
 
         <!-- 跟edit 16行搭配 -->
         <!-- <input type="number" name="num[]" value="<  =$row['rank'];?>"> -->
