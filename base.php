@@ -63,7 +63,7 @@ function find($id){
         }
 
 
-    echo $sql;
+    // echo $sql;
     return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 }
@@ -81,7 +81,7 @@ function del($id){
         }
 
 
-    echo $sql;
+    // echo $sql;
     return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 }
