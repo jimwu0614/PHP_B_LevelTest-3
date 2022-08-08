@@ -23,6 +23,9 @@ foreach($rows as $row){
     <div style="width:24.6%" class="ct">
         <button type="button">往上</button>
         <button type="button">往下</button>
+
+        <!-- 跟edit 16行搭配 -->
+        <!-- <input type="number" name="num[]" value="<  =$row['rank'];?>"> -->
     </div>
     <div style="width:24.6%" class="ct">
                                                                         <!-- 從資料庫抓 若1就預設打勾  下面SELECTED比照辦理 -->

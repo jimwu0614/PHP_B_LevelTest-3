@@ -12,6 +12,11 @@ if(isset($_POST['id'])){
             $row['ani']=$_POST['ani'][$key];
             $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
 
+            //跟back/poster的28行input搭配
+            $row['rank']=$_POST['num'][$key];
+
+
+            
             $Poster->save($row);
 
         }
