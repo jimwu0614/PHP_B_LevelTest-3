@@ -9,8 +9,9 @@ include "../base.php";
 
     $poster['name']=$_POST['name'];
     $poster['sh']=1;
+    //動畫效果亂數
     $poster['ani']=rand(1,3);
-    //排序  以id為準  都+1
+    //排序  以id為準  都+1  因為會修改   所以不能直接用ID
     $poster['rank']=$Poster->math('max','id')+1;
     
     $Poster->save($poster);
