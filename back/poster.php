@@ -21,8 +21,8 @@ foreach($rows as $row){
     </div>
     <div style="width:24.6%" class="ct"><input type="text" name="name[]" value="<?=$row['name'];?>"></div>
     <div style="width:24.6%" class="ct">
-        <button type="button">往上</button>
-        <button type="button">往下</button>
+        <button type="button" class="btn">往上</button>
+        <button type="button" class="btn">往下</button>
 
         <!-- 跟edit 16行搭配 -->
         <!-- <input type="number" name="num[]" value="<  =$row['rank'];?>"> -->
@@ -74,3 +74,13 @@ foreach($rows as $row){
 </div>
 </form>
 </div> 
+
+
+<script>
+    $(".btn").on("click",function(){
+        let id = $(this).data('id').split('-')   //split同PHP的explode
+        $.post("./api/switch.php",{table:'poster',id},()=>{
+            location.reload();
+        })
+    })
+</script>
