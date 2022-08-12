@@ -6,6 +6,24 @@
     }
 </style>
 
+<div>
+    快速刪除:
+    <input type="radio" name="type" value="date">依日期 
+    <input type="text" name="date" >
+    <input type="radio" name="type" value="movie">依電影
+    <select name="movie" >
+        <?php
+            $opts=$Order->q("select `movie` from `orders` group by `movie`");
+            foreach($opts as $opt){
+                echo "<option value='{$opt['movie']}'>{$opt['movie']}</option>";
+            }
+
+
+        ?>
+    </select>
+    <button onclick="qDel()">刪除</button>
+</div>
+
 <h3 class="ct">訂單清單</h3>
 
 <div class="header" style="display:flex;width:100%">
