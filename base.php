@@ -133,7 +133,10 @@ function math($math,$col,...$arg){
     return $this->pdo->query($sql)->fetchColumn();
 }
 
-
+function q($sql)
+{
+    return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
 
 }
 
