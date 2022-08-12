@@ -22,6 +22,8 @@ for($i=0;$i<20;$i++)
             $seats[]=$s;
         }
     }
+
+            //把陣列轉成文字才能進去資料庫
     $data['seats']=serialize($seats);
     $Order->save($data);
 } 

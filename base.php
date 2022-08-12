@@ -69,15 +69,15 @@ function find($id){
 }
 
 function del($id){
-    $sql = "DELETE FROM $this->table ";
+    $sql = "DELETE FROM $this->table WHERE ";
 
         if (is_array($id)) {
             foreach ($id as $key => $value) {
                 $tmp[]= "`$key` = '$value'";
             }
-            $sql.=" WHERE ".join(" AND ",$tmp);
+            $sql.=join(" AND ",$tmp);
         }else{
-            $sql.=$id;
+            $sql.= "`id` =". $id;
         }
 
 
