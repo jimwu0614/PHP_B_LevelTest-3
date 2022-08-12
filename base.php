@@ -142,7 +142,7 @@ $Poster = new DB('poster');
 // $add = $User->math("count","acc");
 // dd($add);
 $Movie=new DB('movie');
-
+$Order=new DB('orders');
 
 
 
