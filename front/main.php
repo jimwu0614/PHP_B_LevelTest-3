@@ -81,64 +81,62 @@
 </style>
 
 <div class="half" style="vertical-align:top;">
-    <h1>預告片介紹</h1>
-    <div class="rb tab" style="width:95%;">
+      <h1>預告片介紹</h1>
+      <div class="rb tab" style="width:95%;">
         <div>
-            <div class="lists">
-                <?php
-                $pos = $Poster->all(['sh' => 1], " order by rank");
-                foreach ($pos as $key => $po) {
-                    echo "<div class='poster' id='p{$po['id']}' data-ani='{$po['ani']}'>";
-                    echo "<img src='./upload/{$po['img']}'>";
-                    echo "<div>{$po['name']}</div>";
-                    echo "</div>";
+          <div class="lists">
+            <?php
+              $pos=$Poster->all(['sh'=>1]," order by rank");
+              foreach($pos as $key => $po){
+                echo "<div class='poster' id='p{$po['id']}' data-ani='{$po['ani']}'>";
+                echo "<img src='./upload/{$po['img']}'>";
+                echo "<div>{$po['name']}</div>";
+                echo "</div>";
+              }
+
+            ?>
+          </div>
+          <div class="controls">
+            <div class="left"></div>
+            <div class="icons">
+              <?php
+
+                foreach($pos as $key => $po){
+                  echo "<div class='icon' id='i{$po['id']}' data-ani='{$po['ani']}'>";
+                  echo "<img src='./upload/{$po['img']}'>";
+                  echo "<div>{$po['name']}</div>";
+                  echo "</div>";
                 }
 
-                ?>
+
+              ?>
             </div>
-            <div class="controls">
-                <div class="left"></div>
-                <div class="icons">
-                    <?php
-
-                    foreach ($pos as $key => $po) {
-                        echo "<div class='icon' id='i{$po['id']}' data-ani='{$po['ani']}'>";
-                        echo "<img src='./upload/{$po['img']}'>";
-                        echo "<div>{$po['name']}</div>";
-                        echo "</div>";
-                    }
-
-
-                    ?>
-                </div>
-                <div class="right"></div>
-            </div>
+            <div class="right"></div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+
 
 <script>
 
-//點下面  會在上面出現的功能
-$(".icon").on("click",function(){
-  let now=$(".poster:visible").hide(1000)
-  let id=$(this).attr("id").replace("i","p")
-  $("#"+id).show(1000)
-})
+$(".poster").eq(0).show()
 
+let start=0;
 let slider=setInterval(()=>{ transition() },2000)
 
-function transition(){
-  let now=$(".poster:visible")
-  let eq=$(now).index()
-    //判斷下一張海報的索引值
-    if(eq>=$('.icon').length-1){
-      eq=0;
-    }else{
-      eq=eq+1;
-    }
-  let next=$(".poster").eq(eq)
-  let ani=$(now).data('ani')
+function transition(n){
+
+let now=$(".poster:visible")
+let eq=$(now).index()
+  //判斷下一張海報的索引值
+  if(eq>=$('.icon').length-1){
+    eq=(n!==undefined)?n:0;
+  }else{
+    eq=(n!==undefined)?n:eq+1;
+  }
+let next=$(".poster").eq(eq)
+let ani=$(now).data('ani')
 
   switch(ani){
     case 1:
@@ -164,6 +162,20 @@ function transition(){
 
 }
 
+//點擊會放去上面的動畫以及hover會停止動作
+$(".icon").on("click",function(){
+  let eq=$(this).index()
+  transition(eq)
+})
+
+$(".icons").hover(
+  function(){
+    clearInterval(slider);
+  },
+  function(){
+    slider=setInterval(()=>{ transition() },2000)
+  }
+)
 
 //點擊下面區塊左右  會滑動
 let p=1
