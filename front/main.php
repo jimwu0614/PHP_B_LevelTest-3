@@ -49,6 +49,7 @@
         width: 100%;
         text-align: center;
         position: absolute;
+        display: none;
     }
 
     .poster img {
@@ -61,6 +62,7 @@
         padding: 2px;
         text-align: center;
         font-size: small;
+        position: relative;
     }
 
     .icon img {
@@ -115,8 +117,80 @@
     </div>
 </div>
 
+<script>
+
+//點下面  會在上面出現的功能
+$(".icon").on("click",function(){
+  let now=$(".poster:visible").hide(1000)
+  let id=$(this).attr("id").replace("i","p")
+  $("#"+id).show(1000)
+})
+
+let slider=setInterval(()=>{ transition() },2000)
+
+function transition(){
+  let now=$(".poster:visible")
+  let eq=$(now).index()
+    //判斷下一張海報的索引值
+    if(eq>=$('.icon').length-1){
+      eq=0;
+    }else{
+      eq=eq+1;
+    }
+  let next=$(".poster").eq(eq)
+  let ani=$(now).data('ani')
+
+  switch(ani){
+    case 1:
+      //淡入淡出
+      $(now).fadeOut(800,()=>{
+        $(next).fadeIn(800)
+      })
+
+    break;
+    case 2:
+      //滑入滑出
+      $(now).slideUp(800,()=>{
+        $(next).slideDown(800)
+      })
+    break;
+    case 3:
+      //縮放
+      $(now).hide(800,()=>{
+        $(next).show(800)
+      })
+    break;
+  }
+
+}
 
 
+//點擊下面區塊左右  會滑動
+let p=1
+let pages=$(".poster").length-4
+
+$(".left,.right").on("click",function(){
+  let arrow=$(this).attr('class');
+  let shift;
+  switch(arrow){
+    case "left":
+      if(p>1){
+        p--
+      }
+    break;
+    case "right":
+      if(p<=pages){
+        p++;
+      }
+      break;
+    }
+    shift=(p-1)*80;
+    $(".icon").animate({right:shift})
+
+})
+
+
+</script>
 
 <div class="half">
     <h1>院線片清單</h1>
