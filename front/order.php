@@ -41,6 +41,7 @@
         date: '',
         sessionId: 0,
         session: '',
+        seats:null,
     }
     $("#movie").load("./api/movie_list.php", {
         id: <?= $selectedMovieId; ?>
@@ -107,7 +108,7 @@
         $("#movieName").text(info.movieName)
         $("#dateStr").text(info.date)
         $("#sessionName").text(info.session)
-        
+
         $(".seat input").on("change", function() {
             let num = $(this).val()
 
@@ -129,6 +130,9 @@
             $("#tickets").text(seats.length)
 
         })
+
+
+        info.seats=seats;
     }
 
 
