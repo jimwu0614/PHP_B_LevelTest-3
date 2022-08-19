@@ -85,12 +85,10 @@
     function booking(){
         $("#order").hide();
         $("#booking").show();
-        $.get("./api/get_booking.php",(seats) => {
-            $("#booking").html(seats);
-            updateInfo()
+        updateInfo()
+        $.get("./api/get_booking.php",{movie:info.movieName,date:info.date,session:info.session},(seats)=>{
+            $("#booking").html(seats)
             setSeatEvents()
-            
-
         })
     }
 
